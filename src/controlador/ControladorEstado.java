@@ -28,7 +28,7 @@ public class ControladorEstado {
         List<String> listaLineas = new ArrayList();
         
         try {
-            BufferedReader br = new BufferedReader(new FileReader("estados.txt"));
+            BufferedReader br = new BufferedReader(new FileReader("src/modelo/estados.txt"));
             String linea;
             while((linea = br.readLine()) != null) {
                 listaLineas.add(linea);
@@ -46,5 +46,9 @@ public class ControladorEstado {
 
     public List<Estado> getListaEstadosIniciales() {
         return listaEstadosIniciales;
+    }
+    
+    public Estado getEstadoInicial(Integer id) {
+        return listaEstadosIniciales.get(id);
     }
 }
