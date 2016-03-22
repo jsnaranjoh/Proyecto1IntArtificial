@@ -5,7 +5,7 @@
  */
 package vista;
 
-import controlador.ControladorEstado;
+import controlador.EstadoControlador;
 import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.ImageIcon;
@@ -43,16 +43,16 @@ public class SudokuVista extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel() {
+        sudokuPanel = new javax.swing.JPanel() {
             public void paintComponent(Graphics g) {
                 Image fondo = new ImageIcon("src/imagen/fondo.jpg").getImage();
                 g.drawImage(fondo, 0, 0, this.getWidth(), this.getHeight(), this);
             }
         };
-        jLabel1 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
+        dificultadLabel = new javax.swing.JLabel();
+        dificultadComboBox = new javax.swing.JComboBox<>();
+        cargarBoton = new javax.swing.JButton();
+        tableroPanel = new javax.swing.JPanel();
         jLabel83 = new javax.swing.JLabel();
         jLabel84 = new javax.swing.JLabel();
         jLabel85 = new javax.swing.JLabel();
@@ -148,132 +148,133 @@ public class SudokuVista extends javax.swing.JFrame {
         setTitle("Sudoku - Proyecto 1 - Inteligencia Artificial");
         setResizable(false);
 
-        jLabel1.setText("Dificultad:");
+        dificultadLabel.setText("Dificultad:");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Principiante", "Fácil", "Medio", "Difícil", "Experto" }));
+        dificultadComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Principiante", "Fácil", "Medio", "Difícil", "Experto" }));
 
-        jButton1.setText("Iniciar");
+        cargarBoton.setText("Iniciar");
 
-        jPanel2.setOpaque(false);
-        jPanel2.setLayout(new java.awt.GridLayout(9, 9));
-        jPanel2.add(jLabel83);
-        jPanel2.add(jLabel84);
-        jPanel2.add(jLabel85);
-        jPanel2.add(jLabel86);
-        jPanel2.add(jLabel87);
-        jPanel2.add(jLabel88);
-        jPanel2.add(jLabel89);
-        jPanel2.add(jLabel90);
-        jPanel2.add(jLabel91);
-        jPanel2.add(jLabel92);
-        jPanel2.add(jLabel93);
-        jPanel2.add(jLabel94);
-        jPanel2.add(jLabel95);
-        jPanel2.add(jLabel96);
-        jPanel2.add(jLabel97);
-        jPanel2.add(jLabel98);
-        jPanel2.add(jLabel99);
-        jPanel2.add(jLabel100);
-        jPanel2.add(jLabel101);
-        jPanel2.add(jLabel102);
-        jPanel2.add(jLabel103);
-        jPanel2.add(jLabel104);
-        jPanel2.add(jLabel105);
-        jPanel2.add(jLabel106);
-        jPanel2.add(jLabel107);
-        jPanel2.add(jLabel108);
-        jPanel2.add(jLabel109);
-        jPanel2.add(jLabel110);
-        jPanel2.add(jLabel111);
-        jPanel2.add(jLabel112);
-        jPanel2.add(jLabel113);
-        jPanel2.add(jLabel114);
-        jPanel2.add(jLabel115);
-        jPanel2.add(jLabel116);
-        jPanel2.add(jLabel117);
-        jPanel2.add(jLabel118);
-        jPanel2.add(jLabel119);
-        jPanel2.add(jLabel120);
-        jPanel2.add(jLabel121);
-        jPanel2.add(jLabel122);
-        jPanel2.add(jLabel123);
-        jPanel2.add(jLabel124);
-        jPanel2.add(jLabel125);
-        jPanel2.add(jLabel126);
-        jPanel2.add(jLabel127);
-        jPanel2.add(jLabel128);
-        jPanel2.add(jLabel129);
-        jPanel2.add(jLabel130);
-        jPanel2.add(jLabel131);
-        jPanel2.add(jLabel132);
-        jPanel2.add(jLabel133);
-        jPanel2.add(jLabel134);
-        jPanel2.add(jLabel135);
-        jPanel2.add(jLabel136);
-        jPanel2.add(jLabel137);
-        jPanel2.add(jLabel138);
-        jPanel2.add(jLabel139);
-        jPanel2.add(jLabel140);
-        jPanel2.add(jLabel141);
-        jPanel2.add(jLabel142);
-        jPanel2.add(jLabel143);
-        jPanel2.add(jLabel144);
-        jPanel2.add(jLabel145);
-        jPanel2.add(jLabel146);
-        jPanel2.add(jLabel147);
-        jPanel2.add(jLabel148);
-        jPanel2.add(jLabel149);
-        jPanel2.add(jLabel150);
-        jPanel2.add(jLabel151);
-        jPanel2.add(jLabel152);
-        jPanel2.add(jLabel153);
-        jPanel2.add(jLabel154);
-        jPanel2.add(jLabel155);
-        jPanel2.add(jLabel156);
-        jPanel2.add(jLabel157);
-        jPanel2.add(jLabel158);
-        jPanel2.add(jLabel159);
-        jPanel2.add(jLabel160);
-        jPanel2.add(jLabel161);
-        jPanel2.add(jLabel162);
-        jPanel2.add(jLabel163);
-        jPanel2.add(jLabel164);
-        jPanel2.add(jLabel165);
-        jPanel2.add(jLabel166);
-        jPanel2.add(jLabel167);
-        jPanel2.add(jLabel168);
-        jPanel2.add(jLabel169);
-        jPanel2.add(jLabel170);
-        jPanel2.add(jLabel171);
-        jPanel2.add(jLabel172);
+        tableroPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        tableroPanel.setOpaque(false);
+        tableroPanel.setLayout(new java.awt.GridLayout(9, 9));
+        tableroPanel.add(jLabel83);
+        tableroPanel.add(jLabel84);
+        tableroPanel.add(jLabel85);
+        tableroPanel.add(jLabel86);
+        tableroPanel.add(jLabel87);
+        tableroPanel.add(jLabel88);
+        tableroPanel.add(jLabel89);
+        tableroPanel.add(jLabel90);
+        tableroPanel.add(jLabel91);
+        tableroPanel.add(jLabel92);
+        tableroPanel.add(jLabel93);
+        tableroPanel.add(jLabel94);
+        tableroPanel.add(jLabel95);
+        tableroPanel.add(jLabel96);
+        tableroPanel.add(jLabel97);
+        tableroPanel.add(jLabel98);
+        tableroPanel.add(jLabel99);
+        tableroPanel.add(jLabel100);
+        tableroPanel.add(jLabel101);
+        tableroPanel.add(jLabel102);
+        tableroPanel.add(jLabel103);
+        tableroPanel.add(jLabel104);
+        tableroPanel.add(jLabel105);
+        tableroPanel.add(jLabel106);
+        tableroPanel.add(jLabel107);
+        tableroPanel.add(jLabel108);
+        tableroPanel.add(jLabel109);
+        tableroPanel.add(jLabel110);
+        tableroPanel.add(jLabel111);
+        tableroPanel.add(jLabel112);
+        tableroPanel.add(jLabel113);
+        tableroPanel.add(jLabel114);
+        tableroPanel.add(jLabel115);
+        tableroPanel.add(jLabel116);
+        tableroPanel.add(jLabel117);
+        tableroPanel.add(jLabel118);
+        tableroPanel.add(jLabel119);
+        tableroPanel.add(jLabel120);
+        tableroPanel.add(jLabel121);
+        tableroPanel.add(jLabel122);
+        tableroPanel.add(jLabel123);
+        tableroPanel.add(jLabel124);
+        tableroPanel.add(jLabel125);
+        tableroPanel.add(jLabel126);
+        tableroPanel.add(jLabel127);
+        tableroPanel.add(jLabel128);
+        tableroPanel.add(jLabel129);
+        tableroPanel.add(jLabel130);
+        tableroPanel.add(jLabel131);
+        tableroPanel.add(jLabel132);
+        tableroPanel.add(jLabel133);
+        tableroPanel.add(jLabel134);
+        tableroPanel.add(jLabel135);
+        tableroPanel.add(jLabel136);
+        tableroPanel.add(jLabel137);
+        tableroPanel.add(jLabel138);
+        tableroPanel.add(jLabel139);
+        tableroPanel.add(jLabel140);
+        tableroPanel.add(jLabel141);
+        tableroPanel.add(jLabel142);
+        tableroPanel.add(jLabel143);
+        tableroPanel.add(jLabel144);
+        tableroPanel.add(jLabel145);
+        tableroPanel.add(jLabel146);
+        tableroPanel.add(jLabel147);
+        tableroPanel.add(jLabel148);
+        tableroPanel.add(jLabel149);
+        tableroPanel.add(jLabel150);
+        tableroPanel.add(jLabel151);
+        tableroPanel.add(jLabel152);
+        tableroPanel.add(jLabel153);
+        tableroPanel.add(jLabel154);
+        tableroPanel.add(jLabel155);
+        tableroPanel.add(jLabel156);
+        tableroPanel.add(jLabel157);
+        tableroPanel.add(jLabel158);
+        tableroPanel.add(jLabel159);
+        tableroPanel.add(jLabel160);
+        tableroPanel.add(jLabel161);
+        tableroPanel.add(jLabel162);
+        tableroPanel.add(jLabel163);
+        tableroPanel.add(jLabel164);
+        tableroPanel.add(jLabel165);
+        tableroPanel.add(jLabel166);
+        tableroPanel.add(jLabel167);
+        tableroPanel.add(jLabel168);
+        tableroPanel.add(jLabel169);
+        tableroPanel.add(jLabel170);
+        tableroPanel.add(jLabel171);
+        tableroPanel.add(jLabel172);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout sudokuPanelLayout = new javax.swing.GroupLayout(sudokuPanel);
+        sudokuPanel.setLayout(sudokuPanelLayout);
+        sudokuPanelLayout.setHorizontalGroup(
+            sudokuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(sudokuPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addComponent(dificultadLabel)
                 .addGap(18, 18, 18)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(dificultadComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addComponent(cargarBoton)
                 .addContainerGap(565, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, sudokuPanelLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tableroPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        sudokuPanelLayout.setVerticalGroup(
+            sudokuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(sudokuPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                .addGroup(sudokuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(dificultadLabel)
+                    .addComponent(dificultadComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cargarBoton))
                 .addGap(30, 30, 30)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tableroPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(36, Short.MAX_VALUE))
         );
 
@@ -281,11 +282,11 @@ public class SudokuVista extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(sudokuPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(sudokuPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -327,9 +328,9 @@ public class SudokuVista extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton cargarBoton;
+    private javax.swing.JComboBox<String> dificultadComboBox;
+    private javax.swing.JLabel dificultadLabel;
     private javax.swing.JLabel jLabel100;
     private javax.swing.JLabel jLabel101;
     private javax.swing.JLabel jLabel102;
@@ -420,7 +421,7 @@ public class SudokuVista extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel97;
     private javax.swing.JLabel jLabel98;
     private javax.swing.JLabel jLabel99;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel sudokuPanel;
+    private javax.swing.JPanel tableroPanel;
     // End of variables declaration//GEN-END:variables
 }

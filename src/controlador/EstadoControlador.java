@@ -19,11 +19,11 @@ import modelo.Estado;
  *
  * @author jsnar
  */
-public class ControladorEstado {
+public class EstadoControlador {
     
     private List<Estado> listaEstadosIniciales;
     
-    public ControladorEstado() {
+    public EstadoControlador() {
         listaEstadosIniciales = new ArrayList();
         List<String> listaLineas = new ArrayList();
         
@@ -34,9 +34,9 @@ public class ControladorEstado {
                 listaLineas.add(linea);
             }
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(ControladorEstado.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EstadoControlador.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
-            Logger.getLogger(ControladorEstado.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EstadoControlador.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         for(String linea:listaLineas) {

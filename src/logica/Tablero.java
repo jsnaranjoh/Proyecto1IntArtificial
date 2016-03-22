@@ -5,7 +5,7 @@
  */
 package logica;
 
-import controlador.ControladorEstado;
+import controlador.EstadoControlador;
 import modelo.Estado;
 
 /**
@@ -21,7 +21,7 @@ public class Tablero {
     }
     
     public Tablero () {
-        ControladorEstado controladorEstado = new ControladorEstado();
+        EstadoControlador controladorEstado = new EstadoControlador();
         estadoTablero = controladorEstado.getEstadoInicial(0);
     }
 }
