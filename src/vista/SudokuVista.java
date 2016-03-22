@@ -21,9 +21,17 @@ public class SudokuVista extends javax.swing.JFrame {
     /**
      * Creates new form SudokuVista
      */
+    
+    private Tablero tablero;
+    
     public SudokuVista() {
         initComponents();
-        Tablero tablero = new Tablero();
+        tablero = new Tablero();
+    }
+    
+    public void cargarTablero() {
+        Estado estadoTablero = tablero.getEstadoTablero();
+        
     }
 
     /**
@@ -148,275 +156,95 @@ public class SudokuVista extends javax.swing.JFrame {
 
         jPanel2.setOpaque(false);
         jPanel2.setLayout(new java.awt.GridLayout(9, 9));
-
-        jLabel83.setText("jLabel83");
         jPanel2.add(jLabel83);
-
-        jLabel84.setText("jLabel83");
         jPanel2.add(jLabel84);
-
-        jLabel85.setText("jLabel83");
         jPanel2.add(jLabel85);
-
-        jLabel86.setText("jLabel83");
         jPanel2.add(jLabel86);
-
-        jLabel87.setText("jLabel83");
         jPanel2.add(jLabel87);
-
-        jLabel88.setText("jLabel83");
         jPanel2.add(jLabel88);
-
-        jLabel89.setText("jLabel83");
         jPanel2.add(jLabel89);
-
-        jLabel90.setText("jLabel83");
         jPanel2.add(jLabel90);
-
-        jLabel91.setText("jLabel83");
         jPanel2.add(jLabel91);
-
-        jLabel92.setText("jLabel83");
         jPanel2.add(jLabel92);
-
-        jLabel93.setText("jLabel83");
         jPanel2.add(jLabel93);
-
-        jLabel94.setText("jLabel83");
         jPanel2.add(jLabel94);
-
-        jLabel95.setText("jLabel83");
         jPanel2.add(jLabel95);
-
-        jLabel96.setText("jLabel83");
         jPanel2.add(jLabel96);
-
-        jLabel97.setText("jLabel83");
         jPanel2.add(jLabel97);
-
-        jLabel98.setText("jLabel83");
         jPanel2.add(jLabel98);
-
-        jLabel99.setText("jLabel83");
         jPanel2.add(jLabel99);
-
-        jLabel100.setText("jLabel83");
         jPanel2.add(jLabel100);
-
-        jLabel101.setText("jLabel83");
         jPanel2.add(jLabel101);
-
-        jLabel102.setText("jLabel83");
         jPanel2.add(jLabel102);
-
-        jLabel103.setText("jLabel83");
         jPanel2.add(jLabel103);
-
-        jLabel104.setText("jLabel83");
         jPanel2.add(jLabel104);
-
-        jLabel105.setText("jLabel83");
         jPanel2.add(jLabel105);
-
-        jLabel106.setText("jLabel83");
         jPanel2.add(jLabel106);
-
-        jLabel107.setText("jLabel83");
         jPanel2.add(jLabel107);
-
-        jLabel108.setText("jLabel83");
         jPanel2.add(jLabel108);
-
-        jLabel109.setText("jLabel83");
         jPanel2.add(jLabel109);
-
-        jLabel110.setText("jLabel83");
         jPanel2.add(jLabel110);
-
-        jLabel111.setText("jLabel83");
         jPanel2.add(jLabel111);
-
-        jLabel112.setText("jLabel83");
         jPanel2.add(jLabel112);
-
-        jLabel113.setText("jLabel83");
         jPanel2.add(jLabel113);
-
-        jLabel114.setText("jLabel83");
         jPanel2.add(jLabel114);
-
-        jLabel115.setText("jLabel83");
         jPanel2.add(jLabel115);
-
-        jLabel116.setText("jLabel83");
         jPanel2.add(jLabel116);
-
-        jLabel117.setText("jLabel83");
         jPanel2.add(jLabel117);
-
-        jLabel118.setText("jLabel83");
         jPanel2.add(jLabel118);
-
-        jLabel119.setText("jLabel83");
         jPanel2.add(jLabel119);
-
-        jLabel120.setText("jLabel83");
         jPanel2.add(jLabel120);
-
-        jLabel121.setText("jLabel83");
         jPanel2.add(jLabel121);
-
-        jLabel122.setText("jLabel83");
         jPanel2.add(jLabel122);
-
-        jLabel123.setText("jLabel83");
         jPanel2.add(jLabel123);
-
-        jLabel124.setText("jLabel83");
         jPanel2.add(jLabel124);
-
-        jLabel125.setText("jLabel83");
         jPanel2.add(jLabel125);
-
-        jLabel126.setText("jLabel83");
         jPanel2.add(jLabel126);
-
-        jLabel127.setText("jLabel83");
         jPanel2.add(jLabel127);
-
-        jLabel128.setText("jLabel83");
         jPanel2.add(jLabel128);
-
-        jLabel129.setText("jLabel83");
         jPanel2.add(jLabel129);
-
-        jLabel130.setText("jLabel83");
         jPanel2.add(jLabel130);
-
-        jLabel131.setText("jLabel83");
         jPanel2.add(jLabel131);
-
-        jLabel132.setText("jLabel83");
         jPanel2.add(jLabel132);
-
-        jLabel133.setText("jLabel83");
         jPanel2.add(jLabel133);
-
-        jLabel134.setText("jLabel83");
         jPanel2.add(jLabel134);
-
-        jLabel135.setText("jLabel83");
         jPanel2.add(jLabel135);
-
-        jLabel136.setText("jLabel83");
         jPanel2.add(jLabel136);
-
-        jLabel137.setText("jLabel83");
         jPanel2.add(jLabel137);
-
-        jLabel138.setText("jLabel83");
         jPanel2.add(jLabel138);
-
-        jLabel139.setText("jLabel83");
         jPanel2.add(jLabel139);
-
-        jLabel140.setText("jLabel83");
         jPanel2.add(jLabel140);
-
-        jLabel141.setText("jLabel83");
         jPanel2.add(jLabel141);
-
-        jLabel142.setText("jLabel83");
         jPanel2.add(jLabel142);
-
-        jLabel143.setText("jLabel83");
         jPanel2.add(jLabel143);
-
-        jLabel144.setText("jLabel83");
         jPanel2.add(jLabel144);
-
-        jLabel145.setText("jLabel83");
         jPanel2.add(jLabel145);
-
-        jLabel146.setText("jLabel83");
         jPanel2.add(jLabel146);
-
-        jLabel147.setText("jLabel83");
         jPanel2.add(jLabel147);
-
-        jLabel148.setText("jLabel83");
         jPanel2.add(jLabel148);
-
-        jLabel149.setText("jLabel83");
         jPanel2.add(jLabel149);
-
-        jLabel150.setText("jLabel83");
         jPanel2.add(jLabel150);
-
-        jLabel151.setText("jLabel83");
         jPanel2.add(jLabel151);
-
-        jLabel152.setText("jLabel83");
         jPanel2.add(jLabel152);
-
-        jLabel153.setText("jLabel83");
         jPanel2.add(jLabel153);
-
-        jLabel154.setText("jLabel83");
         jPanel2.add(jLabel154);
-
-        jLabel155.setText("jLabel83");
         jPanel2.add(jLabel155);
-
-        jLabel156.setText("jLabel83");
         jPanel2.add(jLabel156);
-
-        jLabel157.setText("jLabel83");
         jPanel2.add(jLabel157);
-
-        jLabel158.setText("jLabel83");
         jPanel2.add(jLabel158);
-
-        jLabel159.setText("jLabel83");
         jPanel2.add(jLabel159);
-
-        jLabel160.setText("jLabel83");
         jPanel2.add(jLabel160);
-
-        jLabel161.setText("jLabel83");
         jPanel2.add(jLabel161);
-
-        jLabel162.setText("jLabel83");
         jPanel2.add(jLabel162);
-
-        jLabel163.setText("jLabel83");
         jPanel2.add(jLabel163);
-
-        jLabel164.setText("jLabel83");
         jPanel2.add(jLabel164);
-
-        jLabel165.setText("jLabel83");
         jPanel2.add(jLabel165);
-
-        jLabel166.setText("jLabel83");
         jPanel2.add(jLabel166);
-
-        jLabel167.setText("jLabel83");
         jPanel2.add(jLabel167);
-
-        jLabel168.setText("jLabel83");
         jPanel2.add(jLabel168);
-
-        jLabel169.setText("jLabel83");
         jPanel2.add(jLabel169);
-
-        jLabel170.setText("jLabel83");
         jPanel2.add(jLabel170);
-
-        jLabel171.setText("jLabel83");
         jPanel2.add(jLabel171);
-
-        jLabel172.setText("jLabel83");
         jPanel2.add(jLabel172);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);

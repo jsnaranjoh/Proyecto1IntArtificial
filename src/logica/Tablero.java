@@ -15,6 +15,10 @@ import modelo.Estado;
 public class Tablero {
     
     private Estado estadoTablero;
+
+    public Estado getEstadoTablero() {
+        return estadoTablero;
+    }
     
     public Tablero () {
         ControladorEstado controladorEstado = new ControladorEstado();
