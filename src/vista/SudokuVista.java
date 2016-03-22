@@ -9,6 +9,7 @@ import controlador.ControladorEstado;
 import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.ImageIcon;
+import logica.Tablero;
 import modelo.Estado;
 
 /**
@@ -22,8 +23,7 @@ public class SudokuVista extends javax.swing.JFrame {
      */
     public SudokuVista() {
         initComponents();
-        ControladorEstado controladorEstado = new ControladorEstado();
-        Estado estadoTablero = controladorEstado.getEstadoInicial(0);
+        Tablero tablero = new Tablero();
     }
 
     /**
