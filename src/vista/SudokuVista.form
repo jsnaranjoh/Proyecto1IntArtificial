@@ -115,23 +115,23 @@
             <Property name="rows" type="int" value="9"/>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JLabel" name="jLabel83">
+            <Component class="javax.swing.JLabel" name="f1c1Label">
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel84">
+            <Component class="javax.swing.JLabel" name="f1c2Label">
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel85">
+            <Component class="javax.swing.JLabel" name="f1c3Label">
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel86">
+            <Component class="javax.swing.JLabel" name="f1c4Label">
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel87">
+            <Component class="javax.swing.JLabel" name="f1c5Label">
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel88">
+            <Component class="javax.swing.JLabel" name="f1c6Label">
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel89">
+            <Component class="javax.swing.JLabel" name="f1c7Label">
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel90">
+            <Component class="javax.swing.JLabel" name="f1c8Label">
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel91">
+            <Component class="javax.swing.JLabel" name="f1c9Label">
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel92">
             </Component>
@@ -272,26 +272,6 @@
             <Component class="javax.swing.JLabel" name="jLabel160">
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel161">
-            </Component>
-            <Component class="javax.swing.JLabel" name="jLabel162">
-            </Component>
-            <Component class="javax.swing.JLabel" name="jLabel163">
-            </Component>
-            <Component class="javax.swing.JLabel" name="jLabel164">
-            </Component>
-            <Component class="javax.swing.JLabel" name="jLabel165">
-            </Component>
-            <Component class="javax.swing.JLabel" name="jLabel166">
-            </Component>
-            <Component class="javax.swing.JLabel" name="jLabel167">
-            </Component>
-            <Component class="javax.swing.JLabel" name="jLabel168">
-            </Component>
-            <Component class="javax.swing.JLabel" name="jLabel169">
-            </Component>
-            <Component class="javax.swing.JLabel" name="jLabel170">
-            </Component>
-            <Component class="javax.swing.JLabel" name="jLabel171">
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel172">
             </Component>
