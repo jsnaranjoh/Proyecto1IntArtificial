@@ -52,7 +52,12 @@ public class SudokuVista extends javax.swing.JFrame {
         dificultadLabel = new javax.swing.JLabel();
         dificultadComboBox = new javax.swing.JComboBox<>();
         cargarBoton = new javax.swing.JButton();
-        tableroPanel = new javax.swing.JPanel();
+        tableroPanel = new javax.swing.JPanel() {
+            public void paintComponent(Graphics g) {
+                Image fondo = new ImageIcon("src/imagen/tablero.jpg").getImage();
+                g.drawImage(fondo, 0, 0, this.getWidth(), this.getHeight(), this);
+            }
+        };
         jLabel83 = new javax.swing.JLabel();
         jLabel84 = new javax.swing.JLabel();
         jLabel85 = new javax.swing.JLabel();
@@ -154,7 +159,6 @@ public class SudokuVista extends javax.swing.JFrame {
 
         cargarBoton.setText("Iniciar");
 
-        tableroPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         tableroPanel.setOpaque(false);
         tableroPanel.setLayout(new java.awt.GridLayout(9, 9));
         tableroPanel.add(jLabel83);

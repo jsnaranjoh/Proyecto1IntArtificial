@@ -104,13 +104,11 @@
         </Component>
         <Container class="javax.swing.JPanel" name="tableroPanel">
           <Properties>
-            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-              <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
-                <LineBorder/>
-              </Border>
-            </Property>
             <Property name="opaque" type="boolean" value="false"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JPanel() {&#xd;&#xa;&#x9;public void paintComponent(Graphics g) {&#xd;&#xa;&#x9;&#x9;Image fondo = new ImageIcon(&quot;src/imagen/tablero.jpg&quot;).getImage();&#xd;&#xa;&#x9;&#x9;g.drawImage(fondo, 0, 0, this.getWidth(), this.getHeight(), this);&#xd;&#xa;&#x9;}&#xd;&#xa;};"/>
+          </AuxValues>
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridLayout">
             <Property name="columns" type="int" value="9"/>
