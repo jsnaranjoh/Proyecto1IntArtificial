@@ -18,4 +18,8 @@ public class Casilla {
         this.numero = numero;
         this.costo = costo;
     }
+
+    public Integer getNumero() {
+        return numero;
+    }
 }
