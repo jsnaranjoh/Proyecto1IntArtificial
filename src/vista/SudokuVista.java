@@ -5,12 +5,9 @@
  */
 package vista;
 
-import controlador.EstadoControlador;
 import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.ImageIcon;
-import logica.Tablero;
-import modelo.Estado;
 
 /**
  *
@@ -22,15 +19,11 @@ public class SudokuVista extends javax.swing.JFrame {
      * Creates new form SudokuVista
      */
     
-    private Tablero tablero;
-    
     public SudokuVista() {
         initComponents();
-        tablero = new Tablero();
     }
     
     public void cargarTablero() {
-        Estado estadoTablero = tablero.getEstadoTablero();
         
     }
 
@@ -149,6 +142,11 @@ public class SudokuVista extends javax.swing.JFrame {
         dificultadComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Principiante", "Fácil", "Medio", "Difícil", "Experto" }));
 
         cargarBoton.setText("Iniciar");
+        cargarBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cargarBotonActionPerformed(evt);
+            }
+        });
 
         tableroPanel.setOpaque(false);
         tableroPanel.setLayout(new java.awt.GridLayout(9, 9));
@@ -277,6 +275,10 @@ public class SudokuVista extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void cargarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cargarBotonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cargarBotonActionPerformed
 
     /**
      * @param args the command line arguments

@@ -16,5 +16,6 @@ public class Casilla {
     
     public Casilla(Integer numero) {
         this.numero = numero;
+        this.costo = 0;
     }
 }

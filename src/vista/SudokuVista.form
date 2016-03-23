@@ -101,6 +101,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Iniciar"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cargarBotonActionPerformed"/>
+          </Events>
         </Component>
         <Container class="javax.swing.JPanel" name="tableroPanel">
           <Properties>
