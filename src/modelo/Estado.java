@@ -27,15 +27,15 @@ public class Estado {
         this.dificultad = dificultad;
         String lineaEstado = getLineaEstado(dificultad);
         List<Integer> listaNumeros = new ArrayList();
-        String[] listaTokensLineaEstado = lineaEstado.split("\t");
+        String[] listaTokens = lineaEstado.split("\t");
         
-        for(Integer i=1; i<listaTokensLineaEstado.length ;i++) {
-            String[] listaFilas = listaTokensLineaEstado[i].split(",");
+        for(Integer i=1; i<listaTokens.length ;i++) {
+            String[] listaTresNumeros = listaTokens[i].split(",");
             
-            for(String fila:listaFilas) {
-                String[] listaTresNumeros = fila.split("");
+            for(String tresNumeros:listaTresNumeros) {
+                String[] subListaNumeros = tresNumeros.split("");
                 
-                for(String numero:listaTresNumeros) {
+                for(String numero:subListaNumeros) {
                     listaNumeros.add(Integer.parseInt(numero));
                 }
             }
