@@ -5,6 +5,8 @@
  */
 package controlador;
 
+import modelo.Estado;
+
 /**
  *
  * @author jsnar
@@ -12,6 +14,23 @@ package controlador;
 public class EstadoControlador {
     
     public EstadoControlador() {
-
+        
+    }
+    
+    public Estado getEstadoInicial(Integer indexDificultad) {
+        String dificultad;
+        if(indexDificultad == 0) {
+            dificultad = "principiante";
+        } else if(indexDificultad == 1) {
+            dificultad = "facil";
+        } else if(indexDificultad == 2) {
+            dificultad = "medio";
+        } else if(indexDificultad == 3) {
+            dificultad = "dificil";
+        } else {
+            dificultad = "experto";
+        }
+        Estado estadoInicial = new Estado(dificultad);
+        return estadoInicial;
     }
 }

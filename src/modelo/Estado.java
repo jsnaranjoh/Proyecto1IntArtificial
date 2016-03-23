@@ -5,7 +5,6 @@
  */
 package modelo;
 
-import controlador.EstadoControlador;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -13,8 +12,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -51,7 +48,7 @@ public class Estado {
             for(Integer rFila = 0; rFila <= 2; rFila++) {
                 for(Integer cColumna = 0; cColumna <= 2; cColumna++) {
                     for(Integer rColumna = 0; rColumna <= 2; rColumna++) {
-                        cuadricula[cFila][cColumna][rFila][rColumna] = new Casilla(listaNumeros.get(iterador));
+                        cuadricula[cFila][cColumna][rFila][rColumna] = new Casilla(listaNumeros.get(iterador), 0);
                         iterador++;
                     }
                 }
@@ -74,13 +71,17 @@ public class Estado {
                 }
             }
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(EstadoControlador.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Archivo estados.txt no encontrado.");
         } catch (IOException ex) {
-            Logger.getLogger(EstadoControlador.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Error leyendo estados.txt.");
         }
         
         Random generador = new Random();
         Integer index = generador.nextInt(listaLineasEstado.size());
         return listaLineasEstado.get(index);
+    }
+
+    public Casilla[][][][] getCuadricula() {
+        return cuadricula;
     }
 }

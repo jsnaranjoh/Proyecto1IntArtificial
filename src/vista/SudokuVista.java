@@ -5,6 +5,8 @@
  */
 package vista;
 
+import controlador.EstadoControlador;
+import controlador.TableroControlador;
 import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.ImageIcon;
@@ -19,14 +21,13 @@ public class SudokuVista extends javax.swing.JFrame {
      * Creates new form SudokuVista
      */
     
+    private EstadoControlador estadoControlador = new EstadoControlador();
+    private TableroControlador tableroControlador = new TableroControlador();
+    
     public SudokuVista() {
         initComponents();
     }
     
-    public void cargarTablero() {
-        
-    }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -44,7 +45,7 @@ public class SudokuVista extends javax.swing.JFrame {
         };
         dificultadLabel = new javax.swing.JLabel();
         dificultadComboBox = new javax.swing.JComboBox<>();
-        cargarBoton = new javax.swing.JButton();
+        iniciarBoton = new javax.swing.JButton();
         tableroPanel = new javax.swing.JPanel() {
             public void paintComponent(Graphics g) {
                 Image fondo = new ImageIcon("src/imagen/tablero.jpg").getImage();
@@ -141,10 +142,10 @@ public class SudokuVista extends javax.swing.JFrame {
 
         dificultadComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Principiante", "Fácil", "Medio", "Difícil", "Experto" }));
 
-        cargarBoton.setText("Iniciar");
-        cargarBoton.addActionListener(new java.awt.event.ActionListener() {
+        iniciarBoton.setText("Iniciar");
+        iniciarBoton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cargarBotonActionPerformed(evt);
+                iniciarBotonActionPerformed(evt);
             }
         });
 
@@ -242,7 +243,7 @@ public class SudokuVista extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(dificultadComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(cargarBoton)
+                .addComponent(iniciarBoton)
                 .addContainerGap(565, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, sudokuPanelLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -256,7 +257,7 @@ public class SudokuVista extends javax.swing.JFrame {
                 .addGroup(sudokuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(dificultadLabel)
                     .addComponent(dificultadComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cargarBoton))
+                    .addComponent(iniciarBoton))
                 .addGap(30, 30, 30)
                 .addComponent(tableroPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(36, Short.MAX_VALUE))
@@ -276,9 +277,10 @@ public class SudokuVista extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cargarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cargarBotonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cargarBotonActionPerformed
+    private void iniciarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iniciarBotonActionPerformed
+        Integer indexDificultad = dificultadComboBox.getSelectedIndex();
+        tableroControlador.setEstado(estadoControlador.getEstadoInicial(indexDificultad));
+    }//GEN-LAST:event_iniciarBotonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -316,7 +318,6 @@ public class SudokuVista extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton cargarBoton;
     private javax.swing.JComboBox<String> dificultadComboBox;
     private javax.swing.JLabel dificultadLabel;
     private javax.swing.JLabel f1c1Label;
@@ -400,6 +401,7 @@ public class SudokuVista extends javax.swing.JFrame {
     private javax.swing.JLabel f9c7Label;
     private javax.swing.JLabel f9c8Label;
     private javax.swing.JLabel f9c9Label;
+    private javax.swing.JButton iniciarBoton;
     private javax.swing.JPanel sudokuPanel;
     private javax.swing.JPanel tableroPanel;
     // End of variables declaration//GEN-END:variables
