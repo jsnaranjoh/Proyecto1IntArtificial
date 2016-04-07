@@ -19,7 +19,7 @@ import java.util.Random;
  */
 public class Estado {
     
-    private Casilla[][][][] cuadricula;
+    private Integer[][][][] cuadricula;
     
     public Estado() {
 
@@ -67,14 +67,14 @@ public class Estado {
             }
         }
         
-        cuadricula = new Casilla[3][3][3][3];
+        cuadricula = new Integer[3][3][3][3];
         Integer iterador = 0;
         
         for(Integer cFila = 0; cFila <= 2; cFila++) {
             for(Integer rFila = 0; rFila <= 2; rFila++) {
                 for(Integer cColumna = 0; cColumna <= 2; cColumna++) {
                     for(Integer rColumna = 0; rColumna <= 2; rColumna++) {
-                        cuadricula[cFila][cColumna][rFila][rColumna] = new Casilla(listaNumeros.get(iterador), 0);
+                        cuadricula[cFila][cColumna][rFila][rColumna] = listaNumeros.get(iterador);
                         iterador++;
                     }
                 }
@@ -89,7 +89,7 @@ public class Estado {
             for(Integer rFila = 0; rFila <= 2; rFila++) {
                 for(Integer cColumna = 0; cColumna <= 2; cColumna++) {
                     for(Integer rColumna = 0; rColumna <= 2; rColumna++) {
-                        Integer numero = cuadricula[cFila][cColumna][rFila][rColumna].getNumero();
+                        Integer numero = cuadricula[cFila][cColumna][rFila][rColumna];
                         Character caracter = Character.forDigit(numero, 10);
                         
                         if(caracter.equals('0')) {
@@ -105,7 +105,7 @@ public class Estado {
         return listaCaracteres;
     }
 
-    public Casilla[][][][] getCuadricula() {
+    public Integer[][][][] getCuadricula() {
         return cuadricula;
     }
 }
