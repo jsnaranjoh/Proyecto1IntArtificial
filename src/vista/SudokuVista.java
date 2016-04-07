@@ -5,8 +5,7 @@
  */
 package vista;
 
-import controlador.EstadoControlador;
-import controlador.TableroControlador;
+import controlador.Agente;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.util.List;
@@ -22,17 +21,15 @@ public class SudokuVista extends javax.swing.JFrame {
      * Creates new form SudokuVista
      */
     
-    private EstadoControlador estadoControlador;
-    private TableroControlador tableroControlador;
+    private Agente agente;
     
     public SudokuVista() {
         initComponents();
-        estadoControlador = new EstadoControlador();
-        tableroControlador = new TableroControlador();
+        agente = new Agente();
     }
     
     public void actualizarTablero() {
-        List<Character> listaCaracteres = tableroControlador.getListaCaracteres();
+        List<Character> listaCaracteres = agente.getTablero().getListaCaracteres();
         f1c1Label.setText(String.valueOf(listaCaracteres.get(0)));
         f1c2Label.setText(String.valueOf(listaCaracteres.get(1)));
         f1c3Label.setText(String.valueOf(listaCaracteres.get(2)));
@@ -114,6 +111,25 @@ public class SudokuVista extends javax.swing.JFrame {
         f9c7Label.setText(String.valueOf(listaCaracteres.get(78)));
         f9c8Label.setText(String.valueOf(listaCaracteres.get(79)));
         f9c9Label.setText(String.valueOf(listaCaracteres.get(80)));
+    }
+    
+    public String getDificultad() {
+        Integer indexDificultad = dificultadComboBox.getSelectedIndex();
+        String dificultad;
+        
+        if(indexDificultad == 0) {
+            dificultad = "principiante";
+        } else if(indexDificultad == 1) {
+            dificultad = "facil";
+        } else if(indexDificultad == 2) {
+            dificultad = "medio";
+        } else if(indexDificultad == 3) {
+            dificultad = "dificil";
+        } else {
+            dificultad = "experto";
+        }
+        
+        return dificultad;
     }
     
     /**
@@ -609,8 +625,8 @@ public class SudokuVista extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void iniciarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iniciarBotonActionPerformed
-        Integer indexDificultad = dificultadComboBox.getSelectedIndex();
-        tableroControlador.setEstado(estadoControlador.getEstadoInicial(indexDificultad));
+        String dificultad = getDificultad();
+        agente.getTablero().cargarEstadoTxt(dificultad);
         actualizarTablero();
     }//GEN-LAST:event_iniciarBotonActionPerformed
 

@@ -19,12 +19,38 @@ import java.util.Random;
  */
 public class Estado {
     
-    private String dificultad;
     private Casilla[][][][] cuadricula;
     
-    //Constructor que crea el estado a partir de un estado en forma de String con determinada dificultad.
-    public Estado(String dificultad) {
-        this.dificultad = dificultad;
+    public Estado() {
+
+    }
+    
+    /**Método auxiliar que lee el archivo estados.txt y retorna una linea del archivo que contiene un estado inicial al azar entre 
+       un grupo de estados con determianda dificultad.**/
+    public String getLineaEstado(String dificultad) {
+        List<String> listaLineasEstado = new ArrayList();
+        
+        try {
+            BufferedReader br = new BufferedReader(new FileReader("src/modelo/estados.txt"));
+            String lineaEstado;
+            while((lineaEstado = br.readLine()) != null) {
+                String[] listaTokensLineaEstado = lineaEstado.split("\t",2);
+                if(dificultad.equals(listaTokensLineaEstado[0])) {
+                    listaLineasEstado.add(lineaEstado);
+                }
+            }
+        } catch (FileNotFoundException ex) {
+            System.out.println("Archivo estados.txt no encontrado.");
+        } catch (IOException ex) {
+            System.out.println("Error leyendo estados.txt.");
+        }
+        
+        Random generador = new Random();
+        Integer index = generador.nextInt(listaLineasEstado.size());
+        return listaLineasEstado.get(index);
+    }
+    
+    public void cargarEstadoTxt(String dificultad) {
         String lineaEstado = getLineaEstado(dificultad);
         List<Integer> listaNumeros = new ArrayList();
         String[] listaTokens = lineaEstado.split("\t");
@@ -56,29 +82,27 @@ public class Estado {
         }
     }
     
-    /**Método auxiliar que lee el archivo estados.txt y retorna una linea del archivo que contiene un estado inicial al azar entre 
-       un grupo de estados con determianda dificultad.**/
-    public String getLineaEstado(String dificultad) {
-        List<String> listaLineasEstado = new ArrayList();
+    public List<Character> getListaCaracteres() {
+        List<Character> listaCaracteres = new ArrayList();
         
-        try {
-            BufferedReader br = new BufferedReader(new FileReader("src/modelo/estados.txt"));
-            String lineaEstado;
-            while((lineaEstado = br.readLine()) != null) {
-                String[] listaTokensLineaEstado = lineaEstado.split("\t",2);
-                if(dificultad.equals(listaTokensLineaEstado[0])) {
-                    listaLineasEstado.add(lineaEstado);
+        for(Integer cFila = 0; cFila <= 2; cFila++) {
+            for(Integer rFila = 0; rFila <= 2; rFila++) {
+                for(Integer cColumna = 0; cColumna <= 2; cColumna++) {
+                    for(Integer rColumna = 0; rColumna <= 2; rColumna++) {
+                        Integer numero = cuadricula[cFila][cColumna][rFila][rColumna].getNumero();
+                        Character caracter = Character.forDigit(numero, 10);
+                        
+                        if(caracter.equals('0')) {
+                            listaCaracteres.add(' ');
+                        } else {
+                            listaCaracteres.add(caracter);
+                        }
+                    }
                 }
             }
-        } catch (FileNotFoundException ex) {
-            System.out.println("Archivo estados.txt no encontrado.");
-        } catch (IOException ex) {
-            System.out.println("Error leyendo estados.txt.");
         }
         
-        Random generador = new Random();
-        Integer index = generador.nextInt(listaLineasEstado.size());
-        return listaLineasEstado.get(index);
+        return listaCaracteres;
     }
 
     public Casilla[][][][] getCuadricula() {
