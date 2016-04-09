@@ -27,7 +27,7 @@ public class Estado {
     
     /**Método auxiliar que lee el archivo estados.txt y retorna una linea del archivo que contiene un estado inicial al azar entre 
        un grupo de estados con determianda dificultad.**/
-    public String getLineaEstado(String dificultad) {
+    public String leerLineaEstadoAlAzar(String dificultad) {
         List<String> listaLineasEstado = new ArrayList();
         
         try {
@@ -50,8 +50,8 @@ public class Estado {
         return listaLineasEstado.get(index);
     }
     
-    public void cargarEstadoTxt(String dificultad) {
-        String lineaEstado = getLineaEstado(dificultad);
+    public void cargarLineaEstadoEnCuadricula(String dificultad) {
+        String lineaEstado = leerLineaEstadoAlAzar(dificultad);
         List<Integer> listaNumeros = new ArrayList();
         String[] listaTokens = lineaEstado.split("\t");
         
@@ -70,11 +70,11 @@ public class Estado {
         cuadricula = new Integer[3][3][3][3];
         Integer iterador = 0;
         
-        for(Integer cFila = 0; cFila <= 2; cFila++) {
-            for(Integer rFila = 0; rFila <= 2; rFila++) {
-                for(Integer cColumna = 0; cColumna <= 2; cColumna++) {
-                    for(Integer rColumna = 0; rColumna <= 2; rColumna++) {
-                        cuadricula[cFila][cColumna][rFila][rColumna] = listaNumeros.get(iterador);
+        for(Integer rFila = 0; rFila <= 2; rFila++) {
+            for(Integer cFila = 0; cFila <= 2; cFila++) {
+                for(Integer rColumna = 0; rColumna <= 2; rColumna++) {
+                    for(Integer cColumna = 0; cColumna <= 2; cColumna++) {
+                        cuadricula[rFila][rColumna][cFila][cColumna] = listaNumeros.get(iterador);
                         iterador++;
                     }
                 }
@@ -82,14 +82,14 @@ public class Estado {
         }
     }
     
-    public List<Character> getListaCaracteres() {
+    public List<Character> generarListaCaracteres() {
         List<Character> listaCaracteres = new ArrayList();
         
-        for(Integer cFila = 0; cFila <= 2; cFila++) {
-            for(Integer rFila = 0; rFila <= 2; rFila++) {
-                for(Integer cColumna = 0; cColumna <= 2; cColumna++) {
-                    for(Integer rColumna = 0; rColumna <= 2; rColumna++) {
-                        Integer numero = cuadricula[cFila][cColumna][rFila][rColumna];
+        for(Integer rFila = 0; rFila <= 2; rFila++) {
+            for(Integer cFila = 0; cFila <= 2; cFila++) {
+                for(Integer rColumna = 0; rColumna <= 2; rColumna++) {
+                    for(Integer cColumna = 0; cColumna <= 2; cColumna++) {
+                        Integer numero = cuadricula[rFila][rColumna][cFila][cColumna];
                         Character caracter = Character.forDigit(numero, 10);
                         
                         if(caracter.equals('0')) {
@@ -103,6 +103,48 @@ public class Estado {
         }
         
         return listaCaracteres;
+    }
+    
+    public Integer calcularCosto(Operador operador) {
+        Integer costo = 0;
+        Integer rFila = operador.getrFila();
+        Integer rColumna = operador.getrColumna();
+        Integer cFila = operador.getcFila();
+        Integer cColumna = operador.getcColumna();
+        
+        //Costo en x (fila)
+        for(Integer rColumnaI = 0; rColumnaI <= 2; rColumnaI++) {
+            for(Integer cColumnaI = 0; cColumnaI <= 2; cColumnaI++) {
+                if(cuadricula[rFila][rColumnaI][cFila][cColumnaI] == 0){
+                    costo++;
+                }
+            }
+        }
+        
+        //Costo en y (columna)
+        for(Integer rFilaI = 0; rFilaI <= 2; rFilaI++) {
+            for(Integer cFilaI = 0; cFilaI <= 2; cFilaI++) {
+                if(cuadricula[rFilaI][rColumna][cFilaI][cColumna] == 0){
+                    costo++;
+                }
+            }
+        }
+        
+        //Costo en r (región)
+        for(Integer cFilaI = 0; cFilaI <= 2; cFilaI++) {
+            for(Integer cColumnaI = 0; cColumnaI <= 2; cColumnaI++) {
+                if(cuadricula[rFila][rColumna][cFilaI][cColumnaI] == 0){
+                    costo++;
+                }
+            }
+        }
+        
+        System.out.println("Costo: " + costo);
+        return costo;
+    }
+    
+    public Integer calcularHeuristica() {
+        return 0;
     }
 
     public Integer[][][][] getCuadricula() {

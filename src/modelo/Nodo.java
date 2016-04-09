@@ -13,11 +13,25 @@ import java.util.List;
  */
 public class Nodo {
     
-    private Nodo padre;
-    private List<Nodo> hijos;
     private Estado estado;
+    private Nodo padre;
+    private Operador operador;
+    private Integer profundidad;
+    private Integer costo;
+    private List<Nodo> hijos;
     
-    public Nodo(Nodo padre){
+    public Nodo(Estado estado, Nodo padre){
+        this.estado = estado;
         this.padre = padre;
+        operador = new Operador(0, 0, 0, 0, 2);
+        costo = estado.calcularCosto(operador);
+    }
+    
+    public void ubicarNumero() {
+        
+    }
+    
+    public boolean pruebaDeMeta() {
+        return false;
     }
 }

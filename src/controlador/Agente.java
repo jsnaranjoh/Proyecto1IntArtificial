@@ -17,11 +17,12 @@ public class Agente {
     private Nodo raiz;
     private Estado tablero;
     
-    public Agente(){
-        raiz = new Nodo(null);
+    public Agente(String dificultad){
         tablero = new Estado();
+        tablero.cargarLineaEstadoEnCuadricula(dificultad);
+        raiz = new Nodo(tablero, null);
     }
-
+    
     public Estado getTablero() {
         return tablero;
     }

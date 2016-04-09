@@ -25,11 +25,10 @@ public class SudokuVista extends javax.swing.JFrame {
     
     public SudokuVista() {
         initComponents();
-        agente = new Agente();
     }
     
     public void actualizarTablero() {
-        List<Character> listaCaracteres = agente.getTablero().getListaCaracteres();
+        List<Character> listaCaracteres = agente.getTablero().generarListaCaracteres();
         f1c1Label.setText(String.valueOf(listaCaracteres.get(0)));
         f1c2Label.setText(String.valueOf(listaCaracteres.get(1)));
         f1c3Label.setText(String.valueOf(listaCaracteres.get(2)));
@@ -626,7 +625,7 @@ public class SudokuVista extends javax.swing.JFrame {
 
     private void iniciarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iniciarBotonActionPerformed
         String dificultad = getDificultad();
-        agente.getTablero().cargarEstadoTxt(dificultad);
+        agente = new Agente(dificultad);
         actualizarTablero();
     }//GEN-LAST:event_iniciarBotonActionPerformed
 
