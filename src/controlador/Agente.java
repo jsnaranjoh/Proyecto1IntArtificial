@@ -5,6 +5,7 @@
  */
 package controlador;
 
+import java.util.List;
 import java.util.UUID;
 import modelo.Estado;
 import modelo.Nodo;
@@ -29,8 +30,15 @@ public class Agente {
     }
     
     public void solucionarSudoku() {
-        raiz = new Nodo(UUID.randomUUID().toString(), null, tablero);
-        generarHijos(raiz);
+        raiz = new Nodo(UUID.randomUUID().toString(), null, tablero, null, 0);
+        for(Integer i = 0; i<=100; i++) {
+            generarHijos(raiz);
+            if(!raiz.getHijos().isEmpty()) {
+                Nodo mejorHijo = buscarMejorHijo(raiz);
+                raiz.getEstado().ubicarNumero(mejorHijo.getOperador());
+                raiz.getHijos().clear();   
+            }
+        }
     }
     
     public void generarHijos(Nodo nodo) {
@@ -39,13 +47,26 @@ public class Agente {
                 for(Integer numero = 1; numero < 10; numero++) {
                     Operador operador = new Operador(indexColumna, indexFila, numero);
                     if(nodo.getEstado().posibleUbicarNumero(operador)) {
-                        Estado nuevoEstado = nodo.getEstado();
+                        Estado nuevoEstado = new Estado(nodo.getEstado());
                         nuevoEstado.ubicarNumero(operador);
-                        nodo.agregarHijo(new Nodo(UUID.randomUUID().toString(), nodo.getId(), nuevoEstado));
+                        nodo.agregarHijo(new Nodo(UUID.randomUUID().toString(), nodo.getId(), nuevoEstado, operador, nodo.getCostoEstimado()));
                     }
                 }
             }
         }
+    }
+    
+    public Nodo buscarMejorHijo(Nodo nodo) {
+        Nodo mejorHijo = nodo.getHijos().get(0);
+        List<Nodo> listaHijos = nodo.getHijos();
+        
+        for(Integer index = 0; index < listaHijos.size(); index++) {
+            if(listaHijos.get(index).getCostoEstimado() < mejorHijo.getCostoEstimado()) {
+                mejorHijo = listaHijos.get(index);
+            }
+        }
+        
+        return mejorHijo;
     }
     
     public Estado getTablero() {

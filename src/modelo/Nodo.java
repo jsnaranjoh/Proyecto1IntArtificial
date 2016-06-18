@@ -21,16 +21,19 @@ public class Nodo {
     private Integer costoEstimado;
     private List<Nodo> hijos;
     
-    public Nodo(String id, String idPadre, Estado estado) {
+    public Nodo(String id, String idPadre, Estado estado, Operador operador, Integer costoAcumulado) {
         this.id = id;
         this.idPadre = idPadre;
         this.estado = estado;
+        
+        if(operador != null) {
+            this.operador = operador;
+            costoEstimado = estado.calcularCosto(operador) + estado.calcularHeuristica() + costoAcumulado;   
+        } else {
+            costoEstimado = costoAcumulado;
+        }
+        
         hijos = new ArrayList<>();
-    }
-    
-    public void calcularCostoEstimado(Operador operador) {
-        this.operador = operador;
-        costoEstimado = estado.calcularCosto(operador) + estado.calcularHeuristica();
     }
     
     public void agregarHijo(Nodo hijo) {
@@ -44,6 +47,16 @@ public class Nodo {
     public Estado getEstado() {
         return estado;
     }
-    
-    
+
+    public Integer getCostoEstimado() {
+        return costoEstimado;
+    }
+
+    public List<Nodo> getHijos() {
+        return hijos;
+    }
+
+    public Operador getOperador() {
+        return operador;
+    }
 }

@@ -25,6 +25,16 @@ public class Estado {
 
     }
     
+    /** Hace posible copiar un estado en otra porción de memoria **/
+    public Estado(Estado estado) {
+        cuadricula = new Integer[9][9];
+        for(Integer indexFila = 0; indexFila < 9; indexFila++) {
+            for(Integer indexColumna = 0; indexColumna < 9; indexColumna++) {
+                cuadricula[indexColumna][indexFila] = estado.getCuadricula()[indexColumna][indexFila];
+            }
+        }
+    }
+    
     /** Lee el archivo estados.txt, busca los estados con la dificultad requerida y selecciona al azar alguno de ellos **/
     public String leerEstadoArchivo(String dificultad) {
         List<String> listaEstados = new ArrayList<>();
@@ -225,4 +235,10 @@ public class Estado {
         
         cuadricula[columna][fila] = numero;
     }
+    
+    public Integer[][] getCuadricula() {
+        return cuadricula;
+    }
+    
+    
 }
