@@ -17,13 +17,10 @@ import javax.swing.ImageIcon;
  */
 public class SudokuVista extends javax.swing.JFrame {
 
-    /**
-     * Creates new form SudokuVista
-     */
-    
     private Agente agente;
     
     public SudokuVista() {
+        agente = new Agente();
         initComponents();
     }
     
@@ -148,7 +145,7 @@ public class SudokuVista extends javax.swing.JFrame {
         };
         dificultadLabel = new javax.swing.JLabel();
         dificultadComboBox = new javax.swing.JComboBox<>();
-        iniciarBoton = new javax.swing.JButton();
+        cargarBoton = new javax.swing.JButton();
         tableroPanel = new javax.swing.JPanel() {
             public void paintComponent(Graphics g) {
                 Image fondo = new ImageIcon("src/imagen/tablero.jpg").getImage();
@@ -236,6 +233,7 @@ public class SudokuVista extends javax.swing.JFrame {
         f9c7Label = new javax.swing.JLabel();
         f9c8Label = new javax.swing.JLabel();
         f9c9Label = new javax.swing.JLabel();
+        solucionarBoton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sudoku - Proyecto 1 - Inteligencia Artificial");
@@ -245,10 +243,10 @@ public class SudokuVista extends javax.swing.JFrame {
 
         dificultadComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Principiante", "Fácil", "Medio", "Difícil", "Experto" }));
 
-        iniciarBoton.setText("Iniciar");
-        iniciarBoton.addActionListener(new java.awt.event.ActionListener() {
+        cargarBoton.setText("Cargar");
+        cargarBoton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                iniciarBotonActionPerformed(evt);
+                cargarBotonActionPerformed(evt);
             }
         });
 
@@ -579,6 +577,13 @@ public class SudokuVista extends javax.swing.JFrame {
         f9c9Label.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         tableroPanel.add(f9c9Label);
 
+        solucionarBoton.setText("Solucionar");
+        solucionarBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                solucionarBotonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout sudokuPanelLayout = new javax.swing.GroupLayout(sudokuPanel);
         sudokuPanel.setLayout(sudokuPanelLayout);
         sudokuPanelLayout.setHorizontalGroup(
@@ -589,12 +594,14 @@ public class SudokuVista extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(dificultadComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(iniciarBoton)
-                .addContainerGap(565, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, sudokuPanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(tableroPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cargarBoton)
+                .addGap(18, 18, 18)
+                .addComponent(solucionarBoton)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, sudokuPanelLayout.createSequentialGroup()
+                .addContainerGap(100, Short.MAX_VALUE)
+                .addComponent(tableroPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(100, Short.MAX_VALUE))
         );
         sudokuPanelLayout.setVerticalGroup(
             sudokuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -603,7 +610,8 @@ public class SudokuVista extends javax.swing.JFrame {
                 .addGroup(sudokuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(dificultadLabel)
                     .addComponent(dificultadComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(iniciarBoton))
+                    .addComponent(cargarBoton)
+                    .addComponent(solucionarBoton))
                 .addGap(30, 30, 30)
                 .addComponent(tableroPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(36, Short.MAX_VALUE))
@@ -623,11 +631,16 @@ public class SudokuVista extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void iniciarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iniciarBotonActionPerformed
+    private void cargarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cargarBotonActionPerformed
         String dificultad = getDificultad();
-        agente = new Agente(dificultad);
+        agente.cargarSudoku(dificultad);
         actualizarTablero();
-    }//GEN-LAST:event_iniciarBotonActionPerformed
+    }//GEN-LAST:event_cargarBotonActionPerformed
+
+    private void solucionarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_solucionarBotonActionPerformed
+        agente.solucionarSudoku();
+        actualizarTablero();
+    }//GEN-LAST:event_solucionarBotonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -665,6 +678,7 @@ public class SudokuVista extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton cargarBoton;
     private javax.swing.JComboBox<String> dificultadComboBox;
     private javax.swing.JLabel dificultadLabel;
     private javax.swing.JLabel f1c1Label;
@@ -748,7 +762,7 @@ public class SudokuVista extends javax.swing.JFrame {
     private javax.swing.JLabel f9c7Label;
     private javax.swing.JLabel f9c8Label;
     private javax.swing.JLabel f9c9Label;
-    private javax.swing.JButton iniciarBoton;
+    private javax.swing.JButton solucionarBoton;
     private javax.swing.JPanel sudokuPanel;
     private javax.swing.JPanel tableroPanel;
     // End of variables declaration//GEN-END:variables

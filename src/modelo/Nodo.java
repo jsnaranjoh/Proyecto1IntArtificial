@@ -5,6 +5,7 @@
  */
 package modelo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -13,25 +14,21 @@ import java.util.List;
  */
 public class Nodo {
     
-    private Estado estado;
     private Nodo padre;
+    private Estado estado;
     private Operador operador;
-    private Integer profundidad;
-    private Integer costo;
+    private Integer costoEstimado;
     private List<Nodo> hijos;
     
-    public Nodo(Estado estado, Nodo padre){
-        this.estado = estado;
+    public Nodo(Nodo padre, Estado estado) {
         this.padre = padre;
-        operador = new Operador(0, 0, 0, 0, 2);
-        //costo = estado.calcularCosto(operador);
+        this.estado = estado;
+        operador = new Operador(4, 4, 1);
+        costoEstimado = estado.calcularCosto(operador) + estado.calcularHeuristica();
+        hijos = new ArrayList<>();
     }
     
-    public void ubicarNumero() {
-        
-    }
-    
-    public boolean pruebaDeMeta() {
-        return false;
+    public void agregarHijo(Nodo hijo) {
+        hijos.add(hijo);
     }
 }

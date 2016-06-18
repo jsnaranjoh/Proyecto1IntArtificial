@@ -17,10 +17,17 @@ public class Agente {
     private Nodo raiz;
     private Estado tablero;
     
-    public Agente(String dificultad){
+    public Agente() {
+        
+    }
+    
+    public void cargarSudoku(String dificultad) {
         tablero = new Estado();
         tablero.cargarEstadoCuadricula(dificultad);
-        raiz = new Nodo(tablero, null);
+    }
+    
+    public void solucionarSudoku() {
+        raiz = new Nodo(null, tablero);
     }
     
     public Estado getTablero() {

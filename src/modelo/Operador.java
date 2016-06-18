@@ -11,33 +11,27 @@ package modelo;
  */
 public class Operador {
     
-    private Integer rFila;
-    private Integer rColumna;
-    private Integer cFila;
-    private Integer cColumna;
-    private Integer n;
+    private Integer columna;
+    private Integer fila;
+    private Integer numero;
 
-    public Operador(Integer rFila, Integer rColumna, Integer cFila, Integer cColumna, Integer n) {
-        this.rFila = rFila;
-        this.rColumna = rColumna;
-        this.cFila = cFila;
-        this.cColumna = cColumna;
-        this.n = n;
+    public Operador(Integer columna, Integer fila, Integer numero) {
+        this.columna = columna;
+        this.fila = fila;
+        this.numero = numero;
     }
 
-    public Integer getrFila() {
-        return rFila;
+    public Integer getColumna() {
+        return columna;
     }
 
-    public Integer getrColumna() {
-        return rColumna;
+    public Integer getFila() {
+        return fila;
     }
+
+    public Integer getNumero() {
+        return numero;
+    }
+
     
-    public Integer getcFila() {
-        return cFila;
-    }
-
-    public Integer getcColumna() {
-        return cColumna;
-    }
 }

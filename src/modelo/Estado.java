@@ -100,47 +100,68 @@ public class Estado {
         
         return listaCaracteres;
     }
-    /**
+
     public Integer calcularCosto(Operador operador) {
+        Integer columna = operador.getColumna();
+        Integer fila = operador.getFila();
         Integer costo = 0;
-        Integer rFila = operador.getrFila();
-        Integer rColumna = operador.getrColumna();
-        Integer cFila = operador.getcFila();
-        Integer cColumna = operador.getcColumna();
         
-        //Costo en x (fila)
-        for(Integer rColumnaI = 0; rColumnaI <= 2; rColumnaI++) {
-            for(Integer cColumnaI = 0; cColumnaI <= 2; cColumnaI++) {
-                if(cuadricula[rFila][rColumnaI][cFila][cColumnaI] == 0){
+        //Costo en columna
+        for(Integer indexFila = 0; indexFila < 9; indexFila++) {
+            if(cuadricula[columna][indexFila] == 0) {
+                costo++;
+            }
+        }
+        
+        //Costo en fila
+        for(Integer indexColumna = 0; indexColumna < 9; indexColumna++) {
+            if(cuadricula[indexColumna][fila] == 0) {
+                costo++;
+            }
+        }
+        
+        //Costo en región
+        Integer iColumna, iFila;
+        
+        if(columna < 3) {
+            iColumna = 0;
+        } else if(columna < 6) {
+            iColumna = 3;
+        } else {
+            iColumna = 6;
+        }
+        
+        if(fila < 3) {
+            iFila = 0;
+        } else if(fila < 6) {
+            iFila = 3;
+        } else {
+            iFila = 6;
+        }
+        
+        for(Integer indexFila = iFila; indexFila < (iFila + 3); indexFila++) {
+            for(Integer indexColumna = iColumna; indexColumna < (iColumna + 3); indexColumna++) {
+                if(cuadricula[indexColumna][indexFila] == 0) {
                     costo++;
                 }
             }
         }
         
-        //Costo en y (columna)
-        for(Integer rFilaI = 0; rFilaI <= 2; rFilaI++) {
-            for(Integer cFilaI = 0; cFilaI <= 2; cFilaI++) {
-                if(cuadricula[rFilaI][rColumna][cFilaI][cColumna] == 0){
-                    costo++;
-                }
-            }
-        }
-        
-        //Costo en r (región)
-        for(Integer cFilaI = 0; cFilaI <= 2; cFilaI++) {
-            for(Integer cColumnaI = 0; cColumnaI <= 2; cColumnaI++) {
-                if(cuadricula[rFila][rColumna][cFilaI][cColumnaI] == 0){
-                    costo++;
-                }
-            }
-        }
-        
-        System.out.println("Costo: " + costo);
-        return costo;
-    }**/
+        return costo - 3;
+    }
     
     public Integer calcularHeuristica() {
-        return 0;
+        Integer heuristica = 0;
+        
+        for(Integer indexFila = 0; indexFila < 9; indexFila++) {
+            for(Integer indexColumna = 0; indexColumna < 9; indexColumna++) {
+                if(cuadricula[indexColumna][indexFila] == 0) {
+                    heuristica++;
+                }
+            }
+        }
+
+        return heuristica - 1;
     }
 
     public Integer[][] getCuadricula() {
