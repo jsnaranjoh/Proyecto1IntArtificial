@@ -27,7 +27,7 @@ public class Estado {
     
     /** Lee el archivo estados.txt, busca los estados con la dificultad requerida y selecciona al azar alguno de ellos **/
     public String leerEstadoArchivo(String dificultad) {
-        List<String> listaEstados = new ArrayList();
+        List<String> listaEstados = new ArrayList<>();
         
         try {
             BufferedReader br = new BufferedReader(new FileReader("src/modelo/estados.txt"));
@@ -54,7 +54,7 @@ public class Estado {
     public void cargarEstadoCuadricula(String dificultad) {
         String estado = leerEstadoArchivo(dificultad);
         
-        List<Integer> listaNumeros = new ArrayList();
+        List<Integer> listaNumeros = new ArrayList<>();
         
         String[] listaNueveCaracteres = estado.split("\t");
         
@@ -83,7 +83,7 @@ public class Estado {
     
     /**  Convierte la matriz cuadricula[][] en una lista de caracteres **/
     public List<Character> generarListaCaracteres() {
-        List<Character> listaCaracteres = new ArrayList();
+        List<Character> listaCaracteres = new ArrayList<>();
         
         for(Integer fila = 0; fila < 9; fila++) {
             for(Integer columna = 0; columna < 9; columna++) {
