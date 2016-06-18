@@ -32,6 +32,4 @@ public class Operador {
     public Integer getNumero() {
         return numero;
     }
-
-    
 }

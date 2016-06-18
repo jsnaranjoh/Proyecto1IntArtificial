@@ -163,8 +163,58 @@ public class Estado {
 
         return heuristica - 1;
     }
-
-    public Integer[][] getCuadricula() {
-        return cuadricula;
+    
+    public boolean posibleUbicarNumero(Operador operador) {
+        Integer columna = operador.getColumna();
+        Integer fila = operador.getFila();
+        Integer numero = operador.getNumero();
+        
+        //Verificación de que la casilla este vacía
+        if(cuadricula[columna][fila] != 0) {
+            return false;
+        }
+        
+        //Recorrido por la columna buscando el numero
+        for(Integer indexFila = 0; indexFila < 9; indexFila++) {
+            if(cuadricula[columna][indexFila] == numero) {
+                return false;
+            }
+        }
+        
+        //Recorrido por la fila buscando el numero
+        for(Integer indexColumna = 0; indexColumna < 9; indexColumna++) {
+            if(cuadricula[indexColumna][fila] == numero) {
+                return false;
+            }
+        }
+        
+        //Recorrido por la región buscando el numero
+        Integer iColumna, iFila;
+        
+        if(columna < 3) {
+            iColumna = 0;
+        } else if(columna < 6) {
+            iColumna = 3;
+        } else {
+            iColumna = 6;
+        }
+        
+        if(fila < 3) {
+            iFila = 0;
+        } else if(fila < 6) {
+            iFila = 3;
+        } else {
+            iFila = 6;
+        }
+        
+        for(Integer indexFila = iFila; indexFila < (iFila + 3); indexFila++) {
+            for(Integer indexColumna = iColumna; indexColumna < (iColumna + 3); indexColumna++) {
+                if(cuadricula[indexColumna][indexFila] == numero) {
+                    return false;
+                }
+            }
+        }
+        
+        return true;
     }
 }
