@@ -5,8 +5,10 @@
  */
 package controlador;
 
+import java.util.UUID;
 import modelo.Estado;
 import modelo.Nodo;
+import modelo.Operador;
 
 /**
  *
@@ -27,7 +29,23 @@ public class Agente {
     }
     
     public void solucionarSudoku() {
-        raiz = new Nodo(null, tablero);
+        raiz = new Nodo(UUID.randomUUID().toString(), null, tablero);
+        generarHijos(raiz);
+    }
+    
+    public void generarHijos(Nodo nodo) {
+        for(Integer indexFila = 0; indexFila < 9; indexFila++) {
+            for(Integer indexColumna = 0; indexColumna < 9; indexColumna++) {
+                for(Integer numero = 1; numero < 10; numero++) {
+                    Operador operador = new Operador(indexColumna, indexFila, numero);
+                    if(nodo.getEstado().posibleUbicarNumero(operador)) {
+                        Estado nuevoEstado = nodo.getEstado();
+                        nuevoEstado.ubicarNumero(operador);
+                        nodo.agregarHijo(new Nodo(UUID.randomUUID().toString(), nodo.getId(), nuevoEstado));
+                    }
+                }
+            }
+        }
     }
     
     public Estado getTablero() {

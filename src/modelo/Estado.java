@@ -217,4 +217,12 @@ public class Estado {
         
         return true;
     }
+    
+    public void ubicarNumero(Operador operador) {
+        Integer columna = operador.getColumna();
+        Integer fila = operador.getFila();
+        Integer numero = operador.getNumero();
+        
+        cuadricula[columna][fila] = numero;
+    }
 }

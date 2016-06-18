@@ -14,21 +14,36 @@ import java.util.List;
  */
 public class Nodo {
     
-    private Nodo padre;
+    private String id;
+    private String idPadre;
     private Estado estado;
     private Operador operador;
     private Integer costoEstimado;
     private List<Nodo> hijos;
     
-    public Nodo(Nodo padre, Estado estado) {
-        this.padre = padre;
+    public Nodo(String id, String idPadre, Estado estado) {
+        this.id = id;
+        this.idPadre = idPadre;
         this.estado = estado;
-        operador = new Operador(4, 4, 1);
-        costoEstimado = estado.calcularCosto(operador) + estado.calcularHeuristica();
         hijos = new ArrayList<>();
+    }
+    
+    public void calcularCostoEstimado(Operador operador) {
+        this.operador = operador;
+        costoEstimado = estado.calcularCosto(operador) + estado.calcularHeuristica();
     }
     
     public void agregarHijo(Nodo hijo) {
         hijos.add(hijo);
     }
+
+    public String getId() {
+        return id;
+    }
+
+    public Estado getEstado() {
+        return estado;
+    }
+    
+    
 }
