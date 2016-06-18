@@ -24,7 +24,7 @@ public class Nodo {
         this.estado = estado;
         this.padre = padre;
         operador = new Operador(0, 0, 0, 0, 2);
-        costo = estado.calcularCosto(operador);
+        //costo = estado.calcularCosto(operador);
     }
     
     public void ubicarNumero() {

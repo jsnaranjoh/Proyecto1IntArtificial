@@ -19,92 +19,88 @@ import java.util.Random;
  */
 public class Estado {
     
-    private Integer[][][][] cuadricula;
+    private Integer[][] cuadricula;
     
     public Estado() {
 
     }
     
-    /**Método auxiliar que lee el archivo estados.txt y retorna una linea del archivo que contiene un estado inicial al azar entre 
-       un grupo de estados con determianda dificultad.**/
-    public String leerLineaEstadoAlAzar(String dificultad) {
-        List<String> listaLineasEstado = new ArrayList();
+    /** Lee el archivo estados.txt, busca los estados con la dificultad requerida y selecciona al azar alguno de ellos **/
+    public String leerEstadoArchivo(String dificultad) {
+        List<String> listaEstados = new ArrayList();
         
         try {
             BufferedReader br = new BufferedReader(new FileReader("src/modelo/estados.txt"));
-            String lineaEstado;
-            while((lineaEstado = br.readLine()) != null) {
-                String[] listaTokensLineaEstado = lineaEstado.split("\t",2);
-                if(dificultad.equals(listaTokensLineaEstado[0])) {
-                    listaLineasEstado.add(lineaEstado);
+            String estado;
+            while((estado = br.readLine()) != null) {
+                String primerTokenEstado = estado.split("\t", 2)[0];
+                if(dificultad.equals(primerTokenEstado)) {
+                    listaEstados.add(estado);
                 }
             }
+            br.close();
         } catch (FileNotFoundException ex) {
             System.out.println("Archivo estados.txt no encontrado.");
         } catch (IOException ex) {
             System.out.println("Error leyendo estados.txt.");
         }
         
-        Random generador = new Random();
-        Integer index = generador.nextInt(listaLineasEstado.size());
-        return listaLineasEstado.get(index);
+        Random random = new Random();
+        Integer index = random.nextInt(listaEstados.size());
+        return listaEstados.get(index);
     }
     
-    public void cargarLineaEstadoEnCuadricula(String dificultad) {
-        String lineaEstado = leerLineaEstadoAlAzar(dificultad);
+    /** Hace uso del método leerEstadoArchivo() para obtener un estado con la dificultad requerida y lo carga en la matriz cuadricula[][] **/
+    public void cargarEstadoCuadricula(String dificultad) {
+        String estado = leerEstadoArchivo(dificultad);
+        
         List<Integer> listaNumeros = new ArrayList();
-        String[] listaTokens = lineaEstado.split("\t");
         
-        for(Integer i=1; i<listaTokens.length ;i++) {
-            String[] listaTresNumeros = listaTokens[i].split(",");
+        String[] listaNueveCaracteres = estado.split("\t");
+        
+        for(Integer i=1; i<listaNueveCaracteres.length; i++) {
+            String[] listaTresCaracteres = listaNueveCaracteres[i].split(",");
             
-            for(String tresNumeros:listaTresNumeros) {
-                String[] subListaNumeros = tresNumeros.split("");
+            for(String tresCaracteres:listaTresCaracteres) {
+                String[] listaCaracteres = tresCaracteres.split("");
                 
-                for(String numero:subListaNumeros) {
-                    listaNumeros.add(Integer.parseInt(numero));
+                for(String caracter:listaCaracteres) {
+                    listaNumeros.add(Integer.parseInt(caracter));
                 }
             }
         }
         
-        cuadricula = new Integer[3][3][3][3];
-        Integer iterador = 0;
+        cuadricula = new Integer[9][9];
+        Integer index = 0;
         
-        for(Integer rFila = 0; rFila <= 2; rFila++) {
-            for(Integer cFila = 0; cFila <= 2; cFila++) {
-                for(Integer rColumna = 0; rColumna <= 2; rColumna++) {
-                    for(Integer cColumna = 0; cColumna <= 2; cColumna++) {
-                        cuadricula[rFila][rColumna][cFila][cColumna] = listaNumeros.get(iterador);
-                        iterador++;
-                    }
-                }
+        for(Integer fila = 0; fila < 9; fila++) {
+            for(Integer columna = 0; columna < 9; columna++) {
+                cuadricula[columna][fila] = listaNumeros.get(index);
+                index++;
             }
         }
     }
     
+    /**  Convierte la matriz cuadricula[][] en una lista de caracteres **/
     public List<Character> generarListaCaracteres() {
         List<Character> listaCaracteres = new ArrayList();
         
-        for(Integer rFila = 0; rFila <= 2; rFila++) {
-            for(Integer cFila = 0; cFila <= 2; cFila++) {
-                for(Integer rColumna = 0; rColumna <= 2; rColumna++) {
-                    for(Integer cColumna = 0; cColumna <= 2; cColumna++) {
-                        Integer numero = cuadricula[rFila][rColumna][cFila][cColumna];
-                        Character caracter = Character.forDigit(numero, 10);
-                        
-                        if(caracter.equals('0')) {
-                            listaCaracteres.add(' ');
-                        } else {
-                            listaCaracteres.add(caracter);
-                        }
-                    }
+        for(Integer fila = 0; fila < 9; fila++) {
+            for(Integer columna = 0; columna < 9; columna++) {
+                Integer numero = cuadricula[columna][fila];
+                Character caracter = Character.forDigit(numero, 10);
+                
+                if(caracter.equals('0')) {
+                    listaCaracteres.add(' ');
+                } else {
+                    listaCaracteres.add(caracter);
                 }
             }
         }
         
         return listaCaracteres;
     }
-    
+    /**
     public Integer calcularCosto(Operador operador) {
         Integer costo = 0;
         Integer rFila = operador.getrFila();
@@ -141,13 +137,13 @@ public class Estado {
         
         System.out.println("Costo: " + costo);
         return costo;
-    }
+    }**/
     
     public Integer calcularHeuristica() {
         return 0;
     }
 
-    public Integer[][][][] getCuadricula() {
+    public Integer[][] getCuadricula() {
         return cuadricula;
     }
 }

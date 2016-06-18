@@ -19,7 +19,7 @@ public class Agente {
     
     public Agente(String dificultad){
         tablero = new Estado();
-        tablero.cargarLineaEstadoEnCuadricula(dificultad);
+        tablero.cargarEstadoCuadricula(dificultad);
         raiz = new Nodo(tablero, null);
     }
     
